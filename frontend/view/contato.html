@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../img/logo-verdeviva-tr.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>VerdeViva</title>
+</head>
+
+<body>
+
+  <nav class="nav-bar">
+    <section class="img-logo-container">
+      <img src="../img/logo-verdeviva-folha.png" alt="logo" class="img-logo">
+    </section>
+
+    <section class="links-nav-container">
+      <a href="../index.html" class="link-nav">Home</a>
+      <a href="../index.html#sobre" class="link-nav">Sobre nós</a>
+      <a href="../index.html#servicos" class="link-nav">Serviços</a>
+      <a href="./contato.html" class="link-nav">Contato</a>
+    </section>
+  </nav>
+
+  <section>
+
+    <form id="form">
+      <h1>Informações para contato</h1>
+
+      <input name="nome" type="text" id="nome" placeholder="Nome" required>
+
+      <input name="email" type="email" id="email" placeholder="Email" required>
+
+      <label for="cars">Escolha o serviço de interesse:</label>
+
+      <select name="ordem" id="ordem">
+        <option value="Workshops">Workshops e Treinamentos</option>
+        <option value="Projetos">Projetos Personalizados</option>
+        <option value="Consultoria">Consultoria Energética</option>
+        <option value="Fotovoltaica">Energia Solar Fotovoltaica</option>
+      </select>
+
+      <button type="submit">Cadastrar</button>
+    </form>
+
+  </section>
+
+
+  <footer class="bg-body-tertiary text-center text-lg-start">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2025 Copyright:
+      <a class="text-body" href="./index.html">VerdeViva.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+  <script>
+    const API = "http://localhost:3000";
+
+
+    document.getElementById("form").addEventListener("submit", async e => {
+      e.preventDefault();
+      const nome = document.getElementById("nome").value;
+      const email = document.getElementById("email").value;
+      const ordem = document.getElementById("ordem").value;
+      await fetch(`${API}/usuarios`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome, email, ordem })
+      });
+
+      document.getElementById("nome").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("ordem").value = "Workshops";
+
+      alert("Obrigado! Em breve entraremos em contato.")
+    });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
+</body </html>
