@@ -7,6 +7,7 @@ require("dotenv").config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+mongoose.use(cors());
 
 // Conexão com o MongoDB Atlas
 mongoose.connect(process.env.MONGODB_URI)
